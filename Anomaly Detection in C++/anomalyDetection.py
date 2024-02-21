@@ -2,11 +2,12 @@ import re
 
 def extract_variables_and_code(code):
     # Find all variable declarations
-    matches = re.findall(r'\b(int|bool|char)\s+([^;=]+)(?:\s*=\s*\w+)?(?=\s*;)', code)
+    matches = re.findall(r'\b(int|bool|char)\s+((?:[a-zA-Z_]\w*\s*(?:=\s*\w+)?\s*,\s*)+[a-zA-Z_]\w*(?:\s*=\s*\w+)?);', code)
     print(matches)
     
-    # Extract variable names
-    variables = [var.strip().split('=')[0].strip() for var_type, var in matches]
+    # Extract only variable names from declarations
+    variables = [var for _, var in matches]
+    variables = [v.strip().split('=')[0] for var_group in variables for v in var_group.split(',')]
     print(variables)
     
     return variables, code
