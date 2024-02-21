@@ -2,17 +2,17 @@ import re
 
 def extract_variables_and_code(code):
     # Find all variable declarations
-    matches = re.findall(r'\b(int|bool|char)\s+([a-zA-Z_]\w*)(?:\s*=\s*\w+)?\s*;', code)
+    matches = re.findall(r'\b(int|bool|char)\s+([^;=]+)(?:\s*=\s*\w+)?(?=\s*;)', code)
     print(matches)
     
-    # Extract only variable names from declarations
-    variables = [match[1] for match in matches]
+    # Extract variable names
+    variables = [var.strip().split('=')[0].strip() for var_type, var in matches]
     print(variables)
     
     return variables, code
 
 def remove_strings_and_comments(code):
-    code = re.sub(r'(<<)\s*".*?"\s*', '', code) # Remove strings
+    code = re.sub(r'(<<)\s*".*?"\s*', '', code) # Remove strings in cout statements
     code = re.sub(r'//.*', '', code) # Remove single-line comments
     return code
 
@@ -21,7 +21,6 @@ def find_anomalies(code):
     anomalies = []
 
     code = remove_strings_and_comments(code)
-    print(code)
 
     # Check for variable usage
     for var in variables:
