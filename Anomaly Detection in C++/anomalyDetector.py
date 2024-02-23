@@ -69,27 +69,26 @@ def extract_variables_from_code(code):
             if var not in variables and var not in undeclared_anomalies:
                 undeclared_anomalies.append(var)
 
-    return variables, redefine_anomalies, undeclared_anomalies
+    # Check if extracted variables are assigned or not
+    assignment_pattern = r'\b([a-zA-Z_]\w*)\b\s*=\s*'
+    for line in code.split('\n'):
+        if re.search(assignment_pattern, line):
+            assigned_variable = re.search(assignment_pattern, line).group(1)
+            if assigned_variable not in variables and assigned_variable not in undeclared_anomalies:
+                undeclared_anomalies.append(assigned_variable)
+
+    return undeclared_anomalies
 
 def main():
     # Read C++ code from input file
     with open('input.cpp', 'r') as file:
         code = file.read()
 
-    # Extract variables, redefine anomalies, and undeclared anomalies from the code
-    variables, redefine_anomalies, undeclared_anomalies = extract_variables_from_code(code)
-
-    # Print the extracted variables
-    print("Variables declared in the code:")
-    for var in variables:
-        print(var)
-
-    # Print redefine anomalies
-    print("\nRedefine anomalies:")
-    print(redefine_anomalies)
+    # Extract undeclared anomalies from the code
+    undeclared_anomalies = extract_variables_from_code(code)
 
     # Print undeclared anomalies
-    print("\nUndeclared anomalies:")
+    print("Undeclared anomalies:")
     print(undeclared_anomalies)
 
 if __name__ == "__main__":
