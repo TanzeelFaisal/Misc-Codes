@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form</title>
+<style>
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Job Application Form</h2>
+    <form id="jobApplicationForm" onsubmit="submitForm(event)">
+        <h3>Personal Information</h3>
+        <input type="text" id="firstName" placeholder="First Name" required>
+        <input type="text" id="lastName" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <textarea id="address" placeholder="Address" required></textarea>
+
+        <h3>Resume and Cover Letter</h3>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+        <textarea id="coverLetter" placeholder="Cover Letter"></textarea>
+
+        <h3>Education</h3>
+        <input type="text" id="educationLevel" placeholder="Highest Level of Education" required>
+        <input type="text" id="university" placeholder="School/University Name" required>
+        <input type="text" id="major" placeholder="Major/Area of Study" required>
+        <input type="number" id="graduationYear" placeholder="Graduation Year" required>
+
+        <h3>Employment History</h3>
+        <input type="text" id="jobTitle" placeholder="Previous Job Title" required>
+        <input type="text" id="companyName" placeholder="Company Name" required>
+        <input type="text" id="employmentDates" placeholder="Employment Dates" required>
+        <textarea id="jobResponsibilities" placeholder="Job Responsibilities" required></textarea>
+
+        <h3>Skills</h3>
+        <input type="text" id="skills" placeholder="Relevant Skills" required>
+        <input type="text" id="certifications" placeholder="Certifications">
+
+        <h3>Availability</h3>
+        <input type="date" id="startDate" placeholder="Start Date" required>
+        <input type="text" id="workSchedule" placeholder="Preferred Work Schedule" required>
+        <label><input type="checkbox" id="relocate">Willingness to Relocate</label>
+
+        <h3>References</h3>
+        <input type="text" id="referenceName" placeholder="Reference Name" required>
+        <input type="tel" id="referenceContact" placeholder="Reference Contact Information" required>
+        <input type="text" id="relationship" placeholder="Relationship to Applicant" required>
+
+        <h3>Additional Questions</h3>
+        <textarea id="whyWorkHere" placeholder="Why do you want to work for this company?" required></textarea>
+
+        <h3>Consent and Agreement</h3>
+        <label><input type="checkbox" id="agreeTerms" required>I agree to the terms and conditions</label><br>
+        <label><input type="checkbox" id="privacyPolicy" required>I acknowledge the Privacy Policy</label>
+
+        <input type="submit" value="Submit Application">
+    </form>
+</div>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            processData();
+        } else {
+            alert('Please fill out all required fields correctly.');
+        }
+    }
+
+    function validateForm() {
+        let isValid = true;
+        const requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
+
+    function processData() {
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+        };
+        console.log(formData);
+    }
+</script>
+
+</body>
+</html>
