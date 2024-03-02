@@ -68,8 +68,9 @@ function processData() {
 }
 
 function viewApplications() {
-    const prevTable = document.getElementsByTagName('table')
-    console.log(prevTable)
+    const prevTables = Array.from(document.getElementsByClassName('applications'))
+    console.log(prevTables)
+    prevTables.map(node => document.body.removeChild(node))
 
     const tableContainer = document.createElement('div');
     tableContainer.classList.add('container');
