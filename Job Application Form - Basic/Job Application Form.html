@@ -4,43 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Job Application Form</title>
-<style>
-    .container {
-        max-width: 600px;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    select,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0 20px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 100%;
-    }
-    input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-</style>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -90,41 +54,13 @@
         <h3>Consent and Agreement</h3>
         <label><input type="checkbox" id="agreeTerms" required>I agree to the terms and conditions</label><br>
         <label><input type="checkbox" id="privacyPolicy" required>I acknowledge the Privacy Policy</label>
-
         <input type="submit" value="Submit Application">
     </form>
 </div>
 
-<script>
-    function submitForm(event) {
-        event.preventDefault();
-        if (validateForm()) {
-            processData();
-        } else {
-            alert('Please fill out all required fields correctly.');
-        }
-    }
+<button onclick="viewApplications()">View Applications as Table</button>
 
-    function validateForm() {
-        let isValid = true;
-        const requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-            }
-        });
-        return isValid;
-    }
-
-    function processData() {
-        const formData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-        };
-        console.log(formData);
-    }
-</script>
+<script src="/script.js"></script>
 
 </body>
 </html>
