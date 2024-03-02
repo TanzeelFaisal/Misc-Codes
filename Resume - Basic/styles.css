@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-family: Montserrat;
+}
+
+p {
+    font-size: small;
+}
+
+.container {
+    display: flex;
+    width: 210mm;
+    height: 297mm;
+}
+
+.blue-container {
+    width: 30%;
+    background-color:#29316f;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    padding: 40px;
+    box-shadow: inset -20px 0px 15px 0px #212858db;
+}
+
+.blue-container h2, h3, p {
+    margin-bottom: 0;
+}
+
+.blue-container hr {
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.blue-container h4 {
+    font-size: medium;
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+.details-container{
+    width: 70%;
+    padding: 40px;
+    background-color: whitesmoke;
+}
+.details-container h2, h4{
+    margin-bottom: 0;
+}
+.blue-container ul{
+    font-size: smaller;
+}
+
+.circular-portion {
+    width: 200px; /* Set your desired width */
+    height: 200px; /* Set your desired height */
+    overflow: hidden;
+    border-radius: 50%; /* This creates the circular shape */
+    position: relative;
+  }
+  
+  .circular-portion img {
+    width: 100%;
+  }
+  
+.languages {
+    display: flex;
+    justify-content: space-between;
+}
+.datediv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.datediv p{
+    margin-top: 5px;
+}
+.experiencelist{
+    font-size: small;
+}
+
+.certificates {
+    display: flex;
+    justify-content: space-around;
+}
+
+.certificates ul{
+    padding: 0;
+}
+
+.uni-details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.details-container i{
+    padding-right: 10px;
+    font-size: 20px;
+}
